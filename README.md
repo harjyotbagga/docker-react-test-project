@@ -1,5 +1,10 @@
 # Getting Started with Create React App
 
+[![Build Status](https://travis-ci.com/harjyotbagga/docker-react-test-project.svg?token=Spnaiy8jiAPr9m3J7uzp&branch=main)](https://travis-ci.com/harjyotbagga/docker-react-test-project)
+
+**NOTE: Do not make this repo public, contains some auth-tokens & secrets present in plain text.**
+<hr>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
