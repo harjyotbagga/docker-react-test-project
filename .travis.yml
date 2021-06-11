@@ -1,7 +1,4 @@
 sudo: require
-language: node_js
-node_js:
-  - "stable"
 services:
   - docker
 
@@ -9,7 +6,7 @@ before_install:
   - docker build -t harjyotbagga/react-project -f Dockerfile.dev .
 
 script:
-  - docker run -e CI=true harjyotbagga/react-project npm run test
+  - docker run -e CI=true harjyotbagga/react-project npm run start
 
 deploy:
   provider: elasticbeanstalk
