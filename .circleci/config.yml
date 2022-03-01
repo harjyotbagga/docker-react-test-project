@@ -1,0 +1,29 @@
+version: 2.1
+
+# Define the jobs we want to run for this project
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Building the Docker Image
+          command: |
+            docker build -t harjyotbagga/react-test-proj -f Dockerfile.dev .
+  test:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Testing the React Project
+          command: |
+            docker run -e CI=true harjyotbagga/react-test-proj npm run test
+
+# Orchestrate our job run sequence
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
