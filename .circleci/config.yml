@@ -10,20 +10,13 @@ jobs:
           name: Building the Docker Image
           command: |
             docker build -t harjyotbagga/react-test-proj -f Dockerfile.dev .
-  test:
-    machine: true
-    steps:
-      - checkout
       - run:
-          name: Testing the React Project
+          name: Testing the Docker Image
           command: |
-            docker run -e CI=true harjyotbagga/react-test-proj npm run test
+            docker run -e CI=true harjyotbagga/react-test-proj npm run test 
 
 # Orchestrate our job run sequence
 workflows:
   build_and_test:
     jobs:
       - build
-      - test:
-          requires:
-            - build
