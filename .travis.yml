@@ -1,5 +1,6 @@
-sudo: required
 language: node_js
+node_js:
+  - "stable"
 services:
   - docker
 
@@ -11,11 +12,11 @@ script:
 
 # deploy:
 #   provider: elasticbeanstalk
-#   region: "us-east-2"
-#   app: "docker-react-project"
-#   env: "Dockerreactproject-env"
-#   bucket_name: "elasticbeanstalk-us-east-2-506024966338"
-#   bucket_path: "docker-react-project"
+#   region: "ap-south-1"
+#   app: "docker-react-test-proj"
+#   env: "Dockerreacttestproj-env"
+#   bucket_name: "elasticbeanstalk-ap-south-1-506024966338"
+#   bucket_path: "docker-react-test-proj"
 #   on:
 #     branch: main
 #   access_key_id: $AWS_KEY_ID
