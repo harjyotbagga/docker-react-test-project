@@ -1,22 +1,25 @@
-sudo: require
+sudo: required
 language: node_js
 services:
   - docker
 
 before_install:
-  - docker build -t harjyotbagga/react-project -f Dockerfile.dev .
+  - docker build -t harjyotbagga/react-test-proj -f Dockerfile.dev .
 
-script:
-  - docker run -e CI=true harjyotbagga/react-project npm run test
+script: 
+  - docker run -e CI=true harjyotbagga/react-test-proj npm run test
 
-deploy:
-  provider: elasticbeanstalk
-  region: "us-east-2"
-  app: "docker-react-project"
-  env: "Dockerreactproject-env"
-  bucket_name: "elasticbeanstalk-us-east-2-506024966338"
-  bucket_path: "docker-react-project"
-  on:
-    branch: main
-  access_key_id: $AWS_KEY_ID
-  secret_access_key: $AWS_ACCESS_KEY
+# deploy:
+#   provider: elasticbeanstalk
+#   region: "us-east-2"
+#   app: "docker-react-project"
+#   env: "Dockerreactproject-env"
+#   bucket_name: "elasticbeanstalk-us-east-2-506024966338"
+#   bucket_path: "docker-react-project"
+#   on:
+#     branch: main
+#   access_key_id: $AWS_KEY_ID
+#   secret_access_key: $AWS_ACCESS_KEY
+
+
+# Install / Use Docker -> Build image using Dockerfile.dev -> Run Test Suite -> Deploy code on AWS
