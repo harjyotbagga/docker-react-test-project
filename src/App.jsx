@@ -7,9 +7,9 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Sat Sri Akal!
+          Hello, Hello ;)
           <br></br>
-          Edit <code> src / App.js </code> and save to reload.{" "}
+          This is a sample react application!
         </p>{" "}
         <a
           className="App-link"
@@ -17,7 +17,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Click here to learn React{" "}
+          To learn more about react React{" "}
         </a>{" "}
       </header>{" "}
     </div>
