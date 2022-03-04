@@ -1,5 +1,17 @@
 version: 2.1
 
+# Orchestrate our job run sequence
+workflows:
+  build_test_deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: main
+
 # Define the jobs we want to run for this project
 jobs:
   build:
@@ -13,14 +25,21 @@ jobs:
       - run:
           name: Testing the Docker Image
           command: |
-            docker run -e CI=true harjyotbagga/react-test-proj npm run test 
-
-# Orchestrate our job run sequence
-workflows:
-  build_and_test:
-    jobs:
-      - build:
-          filters:
-            branches:
-              only:
-                - main
+            docker run -e CI=true harjyotbagga/react-test-proj npm run test
+  deploy:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Install AWS EB CLI
+          command: |
+            sudo apt install python3-dev
+            pip3 install awsebcli
+      - run:
+          name: Exporting ENV Variables
+          command: |
+            sh ./.circleci/aws_creds.sh
+      - run:
+          name: Deploying to AWS
+          command: |
+            eb deploy
