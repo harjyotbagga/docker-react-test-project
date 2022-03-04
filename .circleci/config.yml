@@ -13,14 +13,35 @@ jobs:
       - run:
           name: Testing the Docker Image
           command: |
-            docker run -e CI=true harjyotbagga/react-test-proj npm run test 
+            docker run -e CI=true harjyotbagga/react-test-proj npm run test
+  deploy:
+    working_directory: ~/app
+    docker:
+      - image: Dockerfile
+    steps:
+      - checkout
+      - run:
+          name: Installing deployment dependencies
+          working_directory: /
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get install python3-pip python3-dev build-essential
+            sudo pip3 install awsebcli
+
+      - run:
+          name: Deploying
+          command: eb deploy docker-react-test-proj
+
 
 # Orchestrate our job run sequence
 workflows:
   build_and_test:
     jobs:
-      - build:
-          filters:
-            branches:
-              only:
-                - main
+      - build
+      - deploy:
+          requires:
+            - build
+        filters:
+          branches:
+            only:
+              - main
