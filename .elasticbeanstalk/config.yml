@@ -1,4 +1,6 @@
 branch-defaults:
+  circleci-editor/15/main:
+    environment: Dockerreacttestproj-env
   main:
     environment: Dockerreacttestproj-env
 environment-defaults:

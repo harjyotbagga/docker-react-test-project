@@ -38,9 +38,10 @@ jobs:
             pyenv versions
             pyenv global 3.7.0
       - run:
-          name: Install AWS EB CLI
+          name: Install AWS CLI & EB CLI
           command: |
             pip install --upgrade pip
+            pip install awscli
             pip install awsebcli
       - run:
           name: Exporting ENV Variables
