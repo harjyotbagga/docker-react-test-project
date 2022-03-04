@@ -4,13 +4,14 @@ version: 2.1
 workflows:
   build_test_deploy:
     jobs:
-      - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: main
+      - deploy
+      # - build
+      # - deploy:
+      #     requires:
+      #       - build
+      #     filters:
+      #       branches:
+      #         only: main
 
 # Define the jobs we want to run for this project
 jobs:
