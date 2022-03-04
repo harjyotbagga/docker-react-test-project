@@ -1,6 +1,10 @@
 branch-defaults:
   main:
-    environment: $AWS_PROJ_ENV_NAME
+    environment: Dockerreacttestproj-env
+environment-defaults:
+  Dockerreacttestproj-env:
+    branch: null
+    repository: null
 global:
   application_name: docker-react-test-proj
   default_ec2_keyname: null
