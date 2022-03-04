@@ -27,13 +27,18 @@ jobs:
           command: |
             docker run -e CI=true harjyotbagga/react-test-proj npm run test
   deploy:
-    machine: true
+    machine:
+      image: circleci/classic:201808-01
     steps:
       - checkout
       - run:
+          name: Setting up Python v3.7.0
+          command: |
+            pyenv versions
+            pyenv global 3.7.0
+      - run:
           name: Install AWS EB CLI
           command: |
-            sudo apt install python3-dev
             pip3 install awsebcli
       - run:
           name: Exporting ENV Variables
